@@ -10,7 +10,7 @@ namespace Web
 		{
 			return new RuleSetContract {
 				Chaining = Enum.GetName(typeof(RuleChainingBehavior), ruleSet.ChainingBehavior),
-				Rules = ruleSet.Rules.Select(x => x.Serialize()).ToArray()
+				Rules = ruleSet.Rules.Select(x => x.Serialize()).ToArray(),
 			};
 		}
 
@@ -21,6 +21,9 @@ namespace Web
 				Priority = rule.Priority.ToString(),
 				Reevaluation = Enum.GetName(typeof(RuleReevaluationBehavior), rule.ReevaluationBehavior),
 				Active = rule.Active.ToString(),
+				Condition = rule.Condition.ToString(),
+				ThenActions = rule.ThenActions.Select(x => x.ToString()).ToArray(),
+				ElseActions = rule.ElseActions.Select(x => x.ToString()).ToArray(),
 			};
 		}
 

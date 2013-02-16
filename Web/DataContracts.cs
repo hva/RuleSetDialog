@@ -17,7 +17,7 @@ namespace Web
 		public string Reevaluation { get; set; }
 		public string Active { get; set; }
 		public string Condition { get; set; }
-		public string ThenActions { get; set; }
-		public string ElseActions { get; set; }
+		public string[] ThenActions { get; set; }
+		public string[] ElseActions { get; set; }
 	}
 }

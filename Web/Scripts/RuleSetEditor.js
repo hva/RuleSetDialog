@@ -43,9 +43,13 @@
         $('tbody', table).empty();
         for (var i in ruleSet.Rules) {
             var rule = ruleSet.Rules[i],
-                tr = $('<tr><td>' + rule.Name + '</td><td>' + rule.Priority + '</td><td>' + rule.Reevaluation + '</td><td>' + rule.Active + '</td></tr>');
+                tr = $('<tr><td>' + rule.Name + '</td><td>' + rule.Priority + '</td><td>' + rule.Reevaluation + '</td><td>' + rule.Active + '</td><td>' + getPreview(rule) + '</td></tr>');
             table.append(tr);
         }
+    }
+    
+    function getPreview(rule) {
+        return 'IF ' + rule.Condition + ' THEN ' + rule.ThenActions.join(' ') + ' ELSE ' + rule.ElseActions.join(' ');
     }
 
 })(jQuery);
