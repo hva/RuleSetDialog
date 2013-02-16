@@ -6,7 +6,7 @@
 <head>
     <title></title>
     <link href="Styles/Styles.css" rel="stylesheet" />
-    <script src="Scripts/json.js"></script>
+    <script src="Scripts/json2.js"></script>
     <script src="Scripts/jquery-1.8.2.min.js"></script>
     <script src="Scripts/RuleSetEditor.js"></script>
 </head>

@@ -7,25 +7,23 @@ namespace Repository
 {
 	public class FileRepository
 	{
-		private const string Filename = "Test.rules.xml";
-
-		public RuleSet Load() {
-			XmlTextReader reader = new XmlTextReader(Filename);
+		public RuleSet Load(string filename) {
+			XmlTextReader reader = new XmlTextReader(filename);
 			WorkflowMarkupSerializer serializer = new WorkflowMarkupSerializer();
 			object results = serializer.Deserialize(reader);
 			RuleSet ruleset = (RuleSet)results;
 
 			if (ruleset == null) {
-				Console.WriteLine("The rules file " + Filename + " does not appear to contain a valid ruleset.");
+				Console.WriteLine("The rules file " + filename + " does not appear to contain a valid ruleset.");
 			}
 			return ruleset;
 		}
 
-		public void Save(RuleSet ruleset) {
-			XmlTextWriter writer = new XmlTextWriter(Filename, null);
+		public void Save(RuleSet ruleset, string filename) {
+			XmlTextWriter writer = new XmlTextWriter(filename, null);
 			WorkflowMarkupSerializer serializer = new WorkflowMarkupSerializer();
 			serializer.Serialize(writer, ruleset);
-			Console.WriteLine("Wrote rules file: " + Filename);
+			Console.WriteLine("Wrote rules file: " + filename);
 		}
 	}
 }
