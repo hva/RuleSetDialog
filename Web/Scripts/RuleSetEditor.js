@@ -1,8 +1,8 @@
-﻿(function($) {
+﻿(function ($) {
 
     var ruleSet;
 
-    $(function() {
+    $(function () {
         ajax('LoadRuleSet', {}, function (resp) {
             ruleSet = resp.d;
             bindUI();
@@ -37,19 +37,26 @@
         $('#ruleChaining').val(ruleSet.Chaining);
         fillRulesTable();
     }
-    
+
     function fillRulesTable() {
         var table = $('#rulesTable');
         $('tbody', table).empty();
         for (var i in ruleSet.Rules) {
             var rule = ruleSet.Rules[i],
-                tr = $('<tr><td>' + rule.Name + '</td><td>' + rule.Priority + '</td><td>' + rule.Reevaluation + '</td><td>' + rule.Active + '</td><td>' + getPreview(rule) + '</td></tr>');
+                td = $('<td></td>'),
+                tr = $('<tr></tr>').append(
+                    td.clone().text(rule.Name),
+                    td.clone().text(rule.Priority),
+                    td.clone().text(rule.Reevaluation),
+                    td.clone().text(rule.Active),
+                    td.clone().text(getPreview(rule))
+                );
             table.append(tr);
         }
     }
-    
+
     function getPreview(rule) {
-        return 'IF ' + rule.Condition + ' THEN ' + rule.ThenActions.join(' ') + ' ELSE ' + rule.ElseActions.join(' ');
+        return ['IF', rule.Condition, 'THEN', rule.ThenActions.join(' '), 'ELSE', rule.ElseActions.join(' ')].join(' ');
     }
 
 })(jQuery);
