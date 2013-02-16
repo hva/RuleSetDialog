@@ -55,8 +55,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Web\Test.rules.xml">
-      <Link>Test.rules.xml</Link>
+    <Content Include="Test.rules.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -1,8 +1,14 @@
-﻿(function ($) {
+﻿(function($) {
 
     var ruleSet;
 
-    $(init);
+    $(function() {
+        ajax('LoadRuleSet', {}, function (resp) {
+            ruleSet = new RuleSet(resp.d);
+            bindUI();
+            refreshUI();
+        });
+    });
 
     function ajax(method, data, success) {
         $.ajax({
@@ -18,17 +24,40 @@
         });
     }
 
-    function init() {
-        ajax('GetRuleSet', {}, function (resp) {
-            ruleSet = new RuleSet(resp.d);
+    function bindUI() {
+        $('#ruleSetSaveButton').click(function () {
+            ajax('SaveRuleSet', { ruleSet: ruleSet.rawData });
+        });
+        $('#ruleChaining').change(function () {
+            var value = $(this).val();
+            ruleSet.setChaining(value);
         });
     }
+
+    function refreshUI() {
+        $('#ruleChaining').val(ruleSet.getChaining());
+    }
+
 
     var Rule = function () {
 
     };
     var RuleSet = function (data) {
-
+        // private
+        var rawData = data,
+            getChaining = function() {
+                return rawData.ChainingBehavior;
+            },
+            setChaining = function(value) {
+                rawData.ChainingBehavior = value;
+            }
+        ;
+        // public
+        return {
+            rawData: rawData,
+            getChaining: getChaining,
+            setChaining: setChaining
+        };
     };
 
 })(jQuery);

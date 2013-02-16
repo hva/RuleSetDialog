@@ -15,11 +15,14 @@
     <div class="section">
         <input id="addRuleButton" type="button" value="Add Rule" />
         <input id="deleteRuleButton" type="button" value="Delete Rule" />
-        <select id="chainingSelect">
-            <option>Sequential</option>
-            <option>Explicit Update Only</option>
-            <option>Full Chaining</option>
-        </select>
+        <label>
+            &nbsp;&nbsp;&nbsp;Chaining:
+            <select id="ruleChaining">
+                <option value="0">Sequential</option>
+                <option value="1">Explicit Update Only</option>
+                <option value="2">Full Chaining</option>
+            </select>
+        </label>
     </div>
 
     <div class="section">
