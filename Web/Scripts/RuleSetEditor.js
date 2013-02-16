@@ -4,7 +4,7 @@
 
     $(function() {
         ajax('LoadRuleSet', {}, function (resp) {
-            ruleSet = new RuleSet(resp.d);
+            ruleSet = resp.d;
             bindUI();
             refreshUI();
         });
@@ -26,38 +26,15 @@
 
     function bindUI() {
         $('#ruleSetSaveButton').click(function () {
-            ajax('SaveRuleSet', { ruleSet: ruleSet.rawData });
+            ajax('SaveRuleSet', { ruleSet: ruleSet });
         });
         $('#ruleChaining').change(function () {
-            var value = $(this).val();
-            ruleSet.setChaining(value);
+            ruleSet.Chaining = $(this).val();
         });
     }
 
     function refreshUI() {
-        $('#ruleChaining').val(ruleSet.getChaining());
+        $('#ruleChaining').val(ruleSet.Chaining);
     }
-
-
-    var Rule = function () {
-
-    };
-    var RuleSet = function (data) {
-        // private
-        var rawData = data,
-            getChaining = function() {
-                return rawData.ChainingBehavior;
-            },
-            setChaining = function(value) {
-                rawData.ChainingBehavior = value;
-            }
-        ;
-        // public
-        return {
-            rawData: rawData,
-            getChaining: getChaining,
-            setChaining: setChaining
-        };
-    };
 
 })(jQuery);

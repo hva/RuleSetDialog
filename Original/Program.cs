@@ -6,7 +6,7 @@ using Repository;
 namespace Original {
 	internal class Program {
 
-		private const string Filename = "Test.rules.xml";
+		private const string Filename = "Data/Test.rules.xml";
 
 		static void Main() {
 			FileRepository rep = new FileRepository();

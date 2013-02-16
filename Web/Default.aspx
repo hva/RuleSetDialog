@@ -18,9 +18,9 @@
         <label>
             &nbsp;&nbsp;&nbsp;Chaining:
             <select id="ruleChaining">
-                <option value="0">Sequential</option>
-                <option value="1">Explicit Update Only</option>
-                <option value="2">Full Chaining</option>
+                <option value="None">Sequential</option>
+                <option value="UpdateOnly">Explicit Update Only</option>
+                <option value="Full">Full Chaining</option>
             </select>
         </label>
     </div>
