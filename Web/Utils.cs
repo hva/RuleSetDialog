@@ -17,7 +17,10 @@ namespace Web
 		public static RuleContract Serialize(this Rule rule)
 		{
 			return new RuleContract {
-				Name = rule.Name
+				Name = rule.Name,
+				Priority = rule.Priority.ToString(),
+				Reevaluation = Enum.GetName(typeof(RuleReevaluationBehavior), rule.ReevaluationBehavior),
+				Active = rule.Active.ToString(),
 			};
 		}
 
