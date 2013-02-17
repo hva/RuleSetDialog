@@ -20,7 +20,7 @@ namespace Web
 				Name = rule.Name,
 				Priority = rule.Priority.ToString(),
 				Reevaluation = Enum.GetName(typeof(RuleReevaluationBehavior), rule.ReevaluationBehavior),
-				Active = rule.Active.ToString(),
+				Active = rule.Active,
 				Condition = rule.Condition.ToString(),
 				ThenActions = rule.ThenActions.Select(x => x.ToString()).ToArray(),
 				ElseActions = rule.ElseActions.Select(x => x.ToString()).ToArray(),

@@ -5,8 +5,8 @@
     $(function () {
         ajax('LoadRuleSet', {}, function (resp) {
             ruleSet = resp.d;
-            bindUI();
-            refreshUI();
+            addHandlers();
+            drawRuleSet();
         });
     });
 
@@ -24,7 +24,7 @@
         });
     }
 
-    function bindUI() {
+    function addHandlers() {
         $('#ruleChaining').change(function () {
             ruleSet.Chaining = $(this).val();
         });
@@ -33,7 +33,7 @@
         });
     }
 
-    function refreshUI() {
+    function drawRuleSet() {
         $('#ruleChaining').val(ruleSet.Chaining);
         fillRulesTable();
     }
@@ -50,13 +50,25 @@
                     td.clone().text(rule.Reevaluation),
                     td.clone().text(rule.Active),
                     td.clone().text(getPreview(rule))
-                );
+                ).click({ rule: rule }, ruleRowClick).css('cursor', 'pointer');
             table.append(tr);
         }
     }
 
     function getPreview(rule) {
         return ['IF', rule.Condition, 'THEN', rule.ThenActions.join(' '), 'ELSE', rule.ElseActions.join(' ')].join(' ');
+    }
+    
+    function ruleRowClick(e) {
+        $(this).addClass('highlight').siblings('.highlight').removeClass('highlight');
+        drawRuleDefinition(e.data.rule);
+    }
+    
+    function drawRuleDefinition(rule) {
+        $('#ruleName').val(rule.Name);
+        $('#rulePriority').val(rule.Priority);
+        $('#ruleReevaluation').val(rule.Reevaluation);
+        $('#ruleActive').attr('checked', rule.Active);
     }
 
 })(jQuery);

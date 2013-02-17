@@ -1,15 +1,25 @@
-﻿div.section {
+﻿div.section
+{
     padding: 10px;
 }
 
-table.grid-view {
+table.grid-view
+{
     border: 1px solid lightgrey;
     border-collapse: collapse;
 }
-table.grid-view td {
-    border: 1px solid lightgrey;
-}
 
-textarea {
+    table.grid-view td
+    {
+        border: 1px solid lightgrey;
+    }
+
+    table.grid-view tr.highlight
+    {
+        background-color: lightgray;
+    }
+
+textarea
+{
     width: 600px;
 }

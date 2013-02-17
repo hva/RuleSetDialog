@@ -108,7 +108,7 @@
 				</RuleStatementAction>
 			</Rule.ElseActions>
 		</Rule>
-		<Rule Priority="0" Description="{p1:Null}" Active="True" ReevaluationBehavior="Always" Name="Rule2">
+		<Rule Priority="1" Description="{p1:Null}" Active="False" ReevaluationBehavior="Never" Name="Rule2">
 			<Rule.Condition>
 				<RuleExpressionCondition Name="{p1:Null}">
 					<RuleExpressionCondition.Expression>
