@@ -146,10 +146,10 @@
         }
         refreshButtons();
     }
-    
+
     function refreshButtons() {
         var disabled = ruleSet.Rules.length == 0,
-        inputs = ['#ruleName', '#rulePriority', '#ruleReevaluation', '#ruleActive', '#ruleCondition', '#ruleThenActions', '#ruleElseActions'];
+            inputs = ['#ruleName', '#rulePriority', '#ruleReevaluation', '#ruleActive', '#ruleCondition', '#ruleThenActions', '#ruleElseActions'];
         $(inputs.concat(['#deleteRule']).join(',')).prop('disabled', disabled);
         if (disabled) {
             $(inputs.join(',')).val('');
