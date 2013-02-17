@@ -69,6 +69,9 @@
         $('#rulePriority').val(rule.Priority);
         $('#ruleReevaluation').val(rule.Reevaluation);
         $('#ruleActive').attr('checked', rule.Active);
+        $('#ruleCondition').text(rule.Condition);
+        $('#ruleThenActions').val(rule.ThenActions.join('\n'));
+        $('#ruleElseActions').val(rule.ElseActions.join('\n'));
     }
 
 })(jQuery);
