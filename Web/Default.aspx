@@ -13,8 +13,8 @@
 <body>
 
     <div class="section">
-        <input id="addRuleButton" type="button" value="Add Rule" />
-        <input id="deleteRuleButton" type="button" value="Delete Rule" />
+        <input id="addRule" type="button" value="Add Rule" />
+        <input id="deleteRule" type="button" value="Delete Rule" />
         <label>
             &nbsp;&nbsp;&nbsp;Chaining:
             <select id="ruleChaining">
