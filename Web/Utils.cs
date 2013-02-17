@@ -18,7 +18,7 @@ namespace Web
 		{
 			return new RuleContract {
 				Name = rule.Name,
-				Priority = rule.Priority.ToString(),
+				Priority = rule.Priority,
 				Reevaluation = Enum.GetName(typeof(RuleReevaluationBehavior), rule.ReevaluationBehavior),
 				Active = rule.Active,
 				Condition = rule.Condition.ToString(),

@@ -1,6 +1,7 @@
 ﻿(function ($) {
 
-    var ruleSet;
+    var ruleSet,
+        selectedRuleIndex = 0;
 
     $(function () {
         ajax('LoadRuleSet', {}, function (resp) {
@@ -28,6 +29,18 @@
         $('#ruleChaining').change(function () {
             ruleSet.Chaining = $(this).val();
         });
+        $('#ruleName').blur({ prop: 'Name' }, modifyRuleProperty);
+        $('#rulePriority').blur({ prop: 'Priority' }, modifyRuleProperty);
+        $('#ruleReevaluation').change({ prop: 'Reevaluation' }, modifyRuleProperty);
+        $('#ruleActive').change(function (e) {
+            var rule = ruleSet.Rules[selectedRuleIndex],
+                value = $(this).is(':checked');
+            rule.Active = value;
+            drawRuleSet();
+        });
+        $('#ruleCondition').change({ prop: 'Condition' }, modifyRuleProperty);
+        $('#ruleThenActions').change({ prop: 'ThenActions' }, modifyRuleMultilineProperty);
+        $('#ruleElseActions').change({ prop: 'ElseActions' }, modifyRuleMultilineProperty);
         $('#ruleSetSaveButton').click(function () {
             ajax('SaveRuleSet', { ruleSet: ruleSet });
         });
@@ -36,6 +49,7 @@
     function drawRuleSet() {
         $('#ruleChaining').val(ruleSet.Chaining);
         fillRulesTable();
+        $('#rulesTable > tbody > tr').eq(selectedRuleIndex).click();
     }
 
     function fillRulesTable() {
@@ -60,8 +74,10 @@
     }
     
     function ruleRowClick(e) {
+        var rule = e.data.rule;
         $(this).addClass('highlight').siblings('.highlight').removeClass('highlight');
-        drawRuleDefinition(e.data.rule);
+        drawRuleDefinition(rule);
+        selectedRuleIndex = ruleSet.Rules.indexOf(rule);
     }
     
     function drawRuleDefinition(rule) {
@@ -69,9 +85,29 @@
         $('#rulePriority').val(rule.Priority);
         $('#ruleReevaluation').val(rule.Reevaluation);
         $('#ruleActive').attr('checked', rule.Active);
-        $('#ruleCondition').text(rule.Condition);
+        $('#ruleCondition').val(rule.Condition);
         $('#ruleThenActions').val(rule.ThenActions.join('\n'));
         $('#ruleElseActions').val(rule.ElseActions.join('\n'));
     }
+
+    function modifyRuleProperty(e) {
+        var prop = e.data.prop,
+            rule = ruleSet.Rules[selectedRuleIndex],
+            original = rule[prop],
+            modified = $(this).val();
+        if (original !== modified) {
+            rule[prop] = modified;
+            drawRuleSet();
+        }
+    }
+
+    function modifyRuleMultilineProperty(e) {
+        var prop = e.data.prop,
+            rule = ruleSet.Rules[selectedRuleIndex],
+            value = $(this).val();
+        rule[prop] = value.split('\n');
+        drawRuleSet();
+    }
+
 
 })(jQuery);

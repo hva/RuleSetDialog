@@ -13,7 +13,7 @@ namespace Web
 	public class RuleContract
 	{
 		public string Name { get; set; }
-		public string Priority { get; set; }
+		public int Priority { get; set; }
 		public string Reevaluation { get; set; }
 		public bool Active { get; set; }
 		public string Condition { get; set; }

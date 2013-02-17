@@ -52,7 +52,12 @@
                 <tr>
                     <td><input id="ruleName" type="text" /></td>
                     <td><input id="rulePriority" type="text" /></td>
-                    <td><input id="ruleReevaluation" type="text" /></td>
+                    <td>
+                        <select id="ruleReevaluation">
+                            <option value="Always">Always</option>
+                            <option value="Never">Never</option>
+                        </select>
+                    </td>
                     <td><label><input id="ruleActive" type="checkbox" /> Active</label></td>
                 </tr>
             </tbody>
